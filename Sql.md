@@ -35,7 +35,9 @@ CREATE OR REPLACE STAGE bucket_s3 URL = 's3://snowflake-lab-bucket/';
 ## Format de fichier (csv & json)
 
 ### Format csv
+<img width="580" height="217" alt="Image" src="https://github.com/user-attachments/assets/c1a07b16-7551-46a6-bffc-45db1264be5e" />
 
 Cette commande SQL permet de définir un format de fichier personnalisé pour lire ou écrire des fichiers CSV.
 
 ### Format json
+<img width="460" height="62" alt="Image" src="https://github.com/user-attachments/assets/9ca2ca9b-ed0b-466f-a7d8-073fe4c3b0e2" />
