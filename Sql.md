@@ -15,3 +15,8 @@ La commande fait ceci ;
 -remplace la base si elle existe déjà (⚠️ cela supprime tout son contenu existant !).
 
 USE DATABASE linkedin;
+
+Cette commande :
+
+-indique que l'on veux travailler dans la base linkedin pour toutes les commandes SQL suivantes (création de tables, requêtes, etc.).
+-Elle change le contexte actif vers cette base.
