@@ -8,6 +8,8 @@ On a commencé par créer une base de données que l'on a nommé "LinkedIn", pou
 
 CREATE OR REPLACE DATABASE linkedin;
 
+<img width="718" height="180" alt="Image" src="https://github.com/user-attachments/assets/8911ee2b-ec8d-44da-97e2-fc5468bebd83" />
+
 La commande fait ceci ;
 
 -crée une base de données appelée linkedin
