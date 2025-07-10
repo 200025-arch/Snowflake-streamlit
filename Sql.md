@@ -29,3 +29,5 @@ Cette commande :
 Un "stage" dans Snowflake est comme une zone temporaire ou un point de passage où on peut stocker ou lire des fichiers (CSV, JSON, etc.) avant de les charger dans des tables. Pour créer ce stage, on a utilisé la commande suivante ;
 
 CREATE OR REPLACE STAGE bucket_s3 URL = 's3://snowflake-lab-bucket/';
+
+<img width="757" height="62" alt="Image" src="https://github.com/user-attachments/assets/482a7394-8207-4734-b6d1-13745a211886" />
