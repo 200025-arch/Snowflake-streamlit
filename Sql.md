@@ -9,7 +9,9 @@ On a commencé par créer une base de données que l'on a nommé "LinkedIn", pou
 CREATE OR REPLACE DATABASE linkedin;
 
 La commande fait ceci ;
+
 -crée une base de données appelée linkedin
+
 -remplace la base si elle existe déjà (⚠️ cela supprime tout son contenu existant !).
 
 USE DATABASE linkedin;
