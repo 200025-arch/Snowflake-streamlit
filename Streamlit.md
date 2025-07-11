@@ -449,3 +449,43 @@ df3['industry_name'] = df3['INDUSTRY_NAME'].astype(str)
 - else: st.warning("Aucune donnée disponible pour le type d’emploi.")
 
   - Affiche un message d’avertissement si le DataFrame est vide.
+
+#### Cinquième visualisation
+
+👉 Afficher la répartition des offres d’emploi par type d’emploi (temps plein, stage, temps partiel).
+
+##### Requête SQL :
+
+- c.company_size : la taille de l'entreprise (ex: "1-10", "11-50", etc.)
+
+- COUNT(DISTINCT jp.job_id) : le nombre d’offres d’emploi distinctes (pour éviter les doublons)
+
+* jobs_postings_clean_named : une vue nettoyée des offres d’emploi, où les company_name numériques ont été remplacés par des noms.
+
+* companies_clean : une vue nettoyée des entreprises (avec leur taille, adresse, etc.)
+
+* La jointure est faite sur le nom de l’entreprise : jp.company_name = c.name.
+
+* WHERE c.company_size IS NOT NULL AND c.name IS NOT NULL :
+
+  - Évite les lignes où la taille ou le nom de l’entreprise est vide/inconnu.
+
+* GROUP BY c.company_size :
+
+  - Regroupe les offres d’emploi selon la taille de l’entreprise.
+
+Tri personnalisé :
+
+ORDER BY
+CASE
+WHEN c.company_size = '1' THEN 1
+WHEN c.company_size = '2' THEN 2
+WHEN c.company_size = '3' THEN 3
+WHEN c.company_size = '4' THEN 4
+WHEN c.company_size = '5' THEN 5
+WHEN c.company_size = '6' THEN 6
+WHEN c.company_size = '7' THEN 7
+ELSE 8
+END;
+
+- Permet de contrôler l’ordre d’affichage des tailles d’entreprise.
