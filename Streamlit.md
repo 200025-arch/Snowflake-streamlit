@@ -89,3 +89,5 @@ Pourquoi réaliser ces imports ? :
 * ORDER BY nb_postes DESC:
 
   - Trie les secteurs du plus grand nombre de postes au plus petit.
+
+<img width="1055" height="496" alt="Image" src="https://github.com/user-attachments/assets/683e66e5-25cd-4bce-8642-3d5fc3e543dc" />
