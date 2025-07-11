@@ -125,4 +125,4 @@ Pour effectuer des vérifications au fur et à mesure que l'on évoluait, on aff
 
 - select \* from "nom de la table";
 
-"\*" : Permet de sélectionner toutes les colonnes de la table que l'on veut afficher.
+* \* : Permet de sélectionner toutes les colonnes de la table que l'on veut afficher.
