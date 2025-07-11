@@ -496,6 +496,7 @@ ORDER BY
 <img width="1002" height="368" alt="Image" src="https://github.com/user-attachments/assets/6f0804be-a577-47e4-a960-29b5fd8c509a" />
 
 ##### code streamlit
+<img width="917" height="525" alt="Image" src="https://github.com/user-attachments/assets/63a01210-dd88-4247-9fd2-827c77de4aae" />
 
 df5 = run_query(query5) & st.dataframe(df5):
 
@@ -542,6 +543,8 @@ if not df5.empty:
 * st.altair_chart(chart5)
 
   - Affiche le graphique Altair dans l’interface Streamlit
+
+<img width="1078" height="510" alt="Image" src="https://github.com/user-attachments/assets/9c606d40-9fda-4972-8e2d-23dcf2eaa518" />
 
 * else: st.warning("Aucune donnée disponible sur la taille des entreprises.")
 
