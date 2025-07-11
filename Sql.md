@@ -54,6 +54,8 @@ Cette commande :
 
 ### Table créée à partir de fichiers csv
 
+<img width="467" height="141" alt="Image" src="https://github.com/user-attachments/assets/06527b42-b112-4b67-be74-357e468e5c44" />
+
 Pour créer les tables, nous avons utilisé la commande suivante :
 
 CREATE OR REPLACE TABLE "nom de la table"(
@@ -65,6 +67,8 @@ etc
 L'instruction "Create or replace" crée une table ou la remplace si elle existe déjà. Les instructions à l'intérieur de la table permettent de créer les colonnes et de donner des types à ces colonnes. Pour les tables créées à partir des données des fichiers csv, il est possibile de créer toutes les colonnes au moment de la création de la table.
 
 ### Table créée à partir de fichiers json
+
+<img width="573" height="62" alt="Image" src="https://github.com/user-attachments/assets/bb8f8c9a-89ee-4017-8fad-a82b04895e46" />
 
 L'instruction pour créer une table reste la même 'CREATE OR REPLACE TABLE "nom de la table"', la différence intervient au moment de la création des colonnes. En effet au moment de la création de la table, on peut créer une seule colonne de type "Variant".
 
