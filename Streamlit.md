@@ -356,4 +356,4 @@ df3['industry_name'] = df3['INDUSTRY_NAME'].astype(str)
 
 - else: st.warning("Aucune donnée disponible pour la répartition.")
 
-  - Affiche un message d’avertissement si le DataFrame est vide.
+  - Affiche un message d’avertissement si le DataFrame est vide. 2
