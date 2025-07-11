@@ -301,3 +301,55 @@ On reconstitue la relation entre chaque offre et son secteur d’activité, pour
   - Trie les secteurs du plus grand nombre d’offres au plus petit, afin de visualiser les plus populaires en premier.
 
 <img width="1002" height="511" alt="Image" src="https://github.com/user-attachments/assets/304b1310-553c-4c90-99bc-d18680184662" />
+
+##### code streamlit
+
+- df3 = run_query(query3)
+
+  - Exécute la requête SQL (query3) avec run_query() → récupère les résultats dans un DataFrame Pandas df3.
+
+- st.dataframe(df3)
+
+  - Affiche le tableau brut dans l'interface Streamlit avec st.dataframe(df3).
+
+* if not df3.empty:
+
+  - Vérifie que le DataFrame contient des données avant d’essayer de construire un graphique.
+
+df3['nb_offres'] = pd.to_numeric(df3['NB_OFFRES'], errors='coerce')
+
+df3['industry_name'] = df3['INDUSTRY_NAME'].astype(str)
+
+- Convertit les noms de colonnes retournés par Snowflake (en majuscules) en noms adaptés pour Altair.
+
+- Transforme NB_OFFRES en nombre (float) si ce n’est pas déjà le cas.
+
+- Transforme INDUSTRY_NAME en chaîne de caractères (str) pour qu’Altair puisse l’utiliser comme nom de secteur.
+
+* mark_arc(innerRadius=50)
+
+  - Crée un diagramme en anneau (donut) au lieu d’un camembert plein
+
+* theta=alt.Theta(...)
+
+  - Détermine la taille de chaque part en fonction du nombre d’offres
+
+* color=alt.Color(...)
+
+  - Attribue une couleur différente à chaque secteur
+
+* tooltip
+
+  - Affiche les infos quand on survole une part du graphique
+
+* .properties(width=..., height=...)
+
+  - Définit la taille du graphique
+
+* st.altair_chart(chart3)
+
+  - Affiche le graphique Altair dans l’application Streamlit.
+
+* else: st.warning("Aucune donnée disponible pour la répartition.")
+
+  - Affiche un message d’avertissement si le DataFrame est vide.
