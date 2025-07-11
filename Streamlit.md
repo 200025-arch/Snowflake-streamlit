@@ -308,7 +308,7 @@ On reconstitue la relation entre chaque offre et son secteur d’activité, pour
 
 - df3 = run_query(query3)
 
-  - Exécute la requête SQL (query3) avec run_query() → récupère les résultats dans un DataFrame Pandas df3.
+- Exécute la requête SQL (query3) avec run_query() → récupère les résultats dans un DataFrame Pandas df3.
 
 - st.dataframe(df3)
 
@@ -354,6 +354,6 @@ df3['industry_name'] = df3['INDUSTRY_NAME'].astype(str)
 
 <img width="1127" height="622" alt="Image" src="https://github.com/user-attachments/assets/c71ea756-4a20-4ed6-8d8b-8baca1660ba3" />
 
-* else: st.warning("Aucune donnée disponible pour la répartition.")
+- else: st.warning("Aucune donnée disponible pour la répartition.")
 
   - Affiche un message d’avertissement si le DataFrame est vide.
