@@ -58,6 +58,8 @@ Pourquoi réaliser ces imports ? :
 
 ##### Requête SQL :
 
+<img width="732" height="303" alt="Image" src="https://github.com/user-attachments/assets/0bc3113d-87bb-455f-949c-8009531853f5" />
+
 - i.industry_name : sélectionne le nom du secteur d’activité (par exemple : "Technologie", "Santé", etc.).
 
 - COUNT(\*) AS nb_postes : compte le nombre total d’offres associées à chaque secteur, et renomme la colonne résultante en nb_postes.
