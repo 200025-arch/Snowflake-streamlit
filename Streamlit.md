@@ -135,3 +135,11 @@ Pourquoi réaliser ces imports ? :
   - tooltip → affiche les valeurs au survol
 
 * .properties(...) → définit la taille du graphique.
+
+* st.altair_chart(chart):
+
+  - Affiche le graphique dans l’interface Streamlit.
+
+* else: st.warning("Aucune donnée à afficher.")
+
+  - Si df est vide, Streamlit affiche un message jaune pour prévenir l’utilisateur.
