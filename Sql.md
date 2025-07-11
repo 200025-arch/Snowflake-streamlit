@@ -118,3 +118,11 @@ value : Représente chaque objet du fichier JSON
 LATERAL FLATTEN permet d’extraire les éléments d’un tableau JSON.
 
 data : Si chaque "data" dans le JSON est un objet dans un tableau, FLATTEN va parcourir chaque élément de ce tableau.
+
+## Pour vérifier
+
+Pour effectuer des vérifications au fur et à mesure que l'on évoluait, on affichait les tables avec cette instruction ;
+
+select \* from "nom de la table";
+
+- "\*" : Permet de sélectionner toutes les colonnes de la table que l'on veut afficher.
