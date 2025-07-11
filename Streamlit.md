@@ -363,6 +363,7 @@ df3['industry_name'] = df3['INDUSTRY_NAME'].astype(str)
 👉 Afficher la répartition des offres d’emploi par type d’emploi (temps plein, stage, temps partiel).
 
 ##### Requête SQL :
+<img width="772" height="238" alt="Image" src="https://github.com/user-attachments/assets/0c521a43-fd98-4319-8c5c-017c01d42d44" />
 
 - formatted_work_type : champ qui contient le type d’emploi formaté (ex : "Full-time", "Internship", "Contract"...).
 
@@ -379,5 +380,7 @@ df3['industry_name'] = df3['INDUSTRY_NAME'].astype(str)
 * On regroupe les offres par type d’emploi. Cela permet de compter combien d’offres sont dans chaque catégorie.
 
 * Trie les résultats du type d’emploi le plus représenté au moins représenté. Cela facilite la lecture du graphique (les plus fréquents sont en haut ou en premier).
+
+<img width="987" height="370" alt="Image" src="https://github.com/user-attachments/assets/47ccce38-943c-42a4-ae92-12ba6faa0104" />
 
 ##### code streamlit
