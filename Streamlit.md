@@ -258,4 +258,42 @@ Pourquoi avoir utilisé une sous requête ? :
 
 - else: st.warning("Aucune donnée salariale à afficher.")
 
-  - Si df2 est vide (pas de résultats), Streamlit affiche un message d'avertissement jaune à l’utilisateur. 2
+  - Si df2 est vide (pas de résultats), Streamlit affiche un message d'avertissement jaune à l’utilisateur.
+
+#### Troisième visualisation
+
+👉 Afficher la Répartition des offres d’emploi par secteur d’activité.
+
+##### Requête SQL :
+
+- i.industry_name : sélectionne le nom du secteur d’activité (par ex. : "Finance", "Santé", "Technologie", etc.).
+
+- COUNT(\*) AS nb_offres : compte le nombre d’offres d’emploi associées à chaque secteur.
+
+- La colonne de résultat est nommée nb_offres.
+
+- Les jointures permettent de relier :
+
+  - jobs_postings_clean (jp) : la table principale contenant les offres d’emploi.
+
+  - job_industries_clean (ji) : table de liaison qui connecte chaque offre à un ou plusieurs secteurs.
+
+  - industries_csv (i) : table contenant la liste des secteurs avec leurs noms.
+
+En clair :
+
+On reconstitue la relation entre chaque offre et son secteur d’activité, pour pouvoir ensuite compter les offres par secteur.
+
+- WHERE i.industry_name IS NOT NULL :
+
+  - Élimine les cas où industry_name serait vide ou inconnu.
+
+  - Permet de ne garder que les secteurs bien identifiés dans l’analyse.
+
+- GROUP BY i.industry_name
+
+  - Regroupe les résultats par nom de secteur pour pouvoir les compter (COUNT(\*)).
+
+- ORDER BY nb_offres DESC
+
+  - Trie les secteurs du plus grand nombre d’offres au plus petit, afin de visualiser les plus populaires en premier.
