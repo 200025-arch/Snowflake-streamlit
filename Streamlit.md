@@ -455,6 +455,7 @@ df3['industry_name'] = df3['INDUSTRY_NAME'].astype(str)
 👉 Afficher la répartition des offres d’emploi par type d’emploi (temps plein, stage, temps partiel).
 
 ##### Requête SQL :
+
 <img width="1002" height="508" alt="Image" src="https://github.com/user-attachments/assets/f14d4644-82db-4c15-904c-94d35fadfb67" />
 
 - c.company_size : la taille de l'entreprise (ex: "1-10", "11-50", etc.)
@@ -493,3 +494,55 @@ ORDER BY
 * Permet de contrôler l’ordre d’affichage des tailles d’entreprise.
 
 <img width="1002" height="368" alt="Image" src="https://github.com/user-attachments/assets/6f0804be-a577-47e4-a960-29b5fd8c509a" />
+
+##### code streamlit
+
+df5 = run_query(query5) & st.dataframe(df5):
+
+- run_query(query5) : exécute la requête sur Snowflake via session.sql(...)
+
+- Résultat stocké dans un DataFrame pandas df5
+
+- st.dataframe(df5) : affiche les résultats dans un tableau interactif
+
+if not df5.empty:
+
+- Permet de ne générer le graphique que s’il y a des données
+
+* NB_OFFRES → nb_offres : converti en numérique (au cas où ce serait du texte)
+
+* COMPANY_SIZE → company_size : converti en chaîne de caractères
+
+💡 Cela permet d’avoir des noms de colonnes plus simples et utilisables avec Altair.
+
+- alt.Chart(df5).mark_bar()
+
+  - Création d’un graphique en barres
+
+- x=alt.X(...)
+
+  - Axe X = taille d’entreprise (company_size), triée dans un ordre personnalisé
+
+- y=alt.Y(...)
+
+  - Axe Y = nombre d’offres (nb_offres)
+
+- color=alt.Color(...)
+
+  - Couleur des barres selon la taille d’entreprise
+
+- tooltip=[...]
+
+  - Affichage des infos au survol
+
+- .properties(...)
+
+  - Taille du graphique
+
+* st.altair_chart(chart5)
+
+  - Affiche le graphique Altair dans l’interface Streamlit
+
+* else: st.warning("Aucune donnée disponible sur la taille des entreprises.")
+
+  - Affiche un message d’avertissement si le DataFrame est vide.
