@@ -20,6 +20,8 @@ Pourquoi réaliser ces imports ? :
 
 #### configurations
 
+<img width="867" height="152" alt="Image" src="https://github.com/user-attachments/assets/c2bd28b1-673f-404e-91a6-a3c67c8d2768" />
+
 - Configure le titre de la page et la largeur de l’interface.
 
 - Affiche le titre principal du tableau de bord.
