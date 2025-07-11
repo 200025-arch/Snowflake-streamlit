@@ -91,3 +91,17 @@ Pourquoi réaliser ces imports ? :
   - Trie les secteurs du plus grand nombre de postes au plus petit.
 
 <img width="1055" height="496" alt="Image" src="https://github.com/user-attachments/assets/683e66e5-25cd-4bce-8642-3d5fc3e543dc" />
+
+##### code streamlit
+
+- st.code(query, language="sql"):
+
+  - Affiche la requête SQL (query) dans une zone de code avec coloration syntaxique.
+
+  - Permet à l’utilisateur de voir quelle requête est exécutée.
+
+  - Utile pour la transparence et le debug.
+
+- run_query(query) → exécute la requête SQL via la session Snowflake et récupère les données dans un DataFrame Pandas (df).
+
+- st.dataframe(df) → affiche ces données dans un tableau interactif Streamlit (triable, scrollable).
