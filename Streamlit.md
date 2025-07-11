@@ -266,6 +266,8 @@ Pourquoi avoir utilisé une sous requête ? :
 
 ##### Requête SQL :
 
+<img width="842" height="258" alt="Image" src="https://github.com/user-attachments/assets/29ded7e0-94df-4dc0-af47-42c24780db26" />
+
 - i.industry_name : sélectionne le nom du secteur d’activité (par ex. : "Finance", "Santé", "Technologie", etc.).
 
 - COUNT(\*) AS nb_offres : compte le nombre d’offres d’emploi associées à chaque secteur.
