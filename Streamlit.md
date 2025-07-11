@@ -356,4 +356,28 @@ df3['industry_name'] = df3['INDUSTRY_NAME'].astype(str)
 
 - else: st.warning("Aucune donnée disponible pour la répartition.")
 
-  - Affiche un message d’avertissement si le DataFrame est vide. 2
+  - Affiche un message d’avertissement si le DataFrame est vide.
+
+#### Quatrième visualisation
+
+👉 Afficher la répartition des offres d’emploi par type d’emploi (temps plein, stage, temps partiel).
+
+##### Requête SQL :
+
+- formatted_work_type : champ qui contient le type d’emploi formaté (ex : "Full-time", "Internship", "Contract"...).
+
+- AS type_emploi : on renomme cette colonne pour l'affichage (en français) → ce sera plus clair dans le tableau ou graphique.
+
+- COUNT(\*) AS nb_offres : on compte le nombre total d’offres par type.
+
+* On utilise la table principale des offres d’emploi.
+
+* Elle contient toutes les colonnes utiles : titre, localisation, salaire, type d’emploi, etc.
+
+* On ne garde que les lignes où le type d’emploi est connu, ça évite d’avoir une catégorie "vide" dans le graphique.
+
+* On regroupe les offres par type d’emploi. Cela permet de compter combien d’offres sont dans chaque catégorie.
+
+* Trie les résultats du type d’emploi le plus représenté au moins représenté. Cela facilite la lecture du graphique (les plus fréquents sont en haut ou en premier).
+
+##### code streamlit
