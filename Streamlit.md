@@ -61,3 +61,11 @@ Pourquoi réaliser ces imports ? :
 - i.industry_name : sélectionne le nom du secteur d’activité (par exemple : "Technologie", "Santé", etc.).
 
 - COUNT(\*) AS nb_postes : compte le nombre total d’offres associées à chaque secteur, et renomme la colonne résultante en nb_postes.
+
+* 3 tables sont jointes :
+
+  - jobs_postings_clean → contient les offres d’emploi (jp)
+
+  - job_industries_clean → table de liaison entre les offres et les secteurs (ji)
+
+  - industries_csv → contient la liste des secteurs (i)
