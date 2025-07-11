@@ -28,9 +28,13 @@ Pourquoi réaliser ces imports ? :
 
 ## Connexion à Snowflake
 
+<img width="393" height="77" alt="Image" src="https://github.com/user-attachments/assets/8df5f8b7-f2f0-4e1b-9c97-35725f167e46" />
+
 - Récupère la session Snowflake actuelle (déjà authentifiée).
 
 ## Fonction utilitaire pour exécuter une requête
+
+<img width="572" height="156" alt="Image" src="https://github.com/user-attachments/assets/f564a475-e368-4bff-ba87-1fe2963a9f02" />
 
 - Prend une requête SQL en paramètre.
 
