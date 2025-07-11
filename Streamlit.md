@@ -147,3 +147,55 @@ Pourquoi réaliser ces imports ? :
 - else: st.warning("Aucune donnée à afficher.")
 
   - Si df est vide, Streamlit affiche un message jaune pour prévenir l’utilisateur.
+
+#### Deuxième visualisation
+
+👉 Afficher le top 10 des postes les mieux rémunérés par industrie.
+
+##### Requête SQL :
+
+Sous-requête interne
+
+- 📄 jobs_postings_clean (jp) : table principale contenant les offres d’emploi.
+
+- 🔗 job_industries_clean (ji) : table de liaison entre offres et secteurs.
+
+- 📊 industries_csv (i) : table contenant le nom des secteurs.
+
+- Clauses importantes :
+
+  - jp.job_id = ji.job_id → associe les offres à leur(s) secteur(s)
+
+  - ji.industry_id = i.industry_id → récupère le nom du secteur
+
+  - TRY_TO_DOUBLE(jp.max_salary) → convertit les salaires en valeur numérique (car souvent stockés sous forme de texte ou chaîne).
+
+  - WHERE ... IS NOT NULL → on exclut les secteurs et les salaires vides.
+
+Le résultat : une table temporaire avec les colonnes.
+
+Agrégation de la sous-requête :
+
+- SELECT industry_name, MAX(max_salary) AS salaire_max :
+
+  - Pour chaque industry_name, on calcule le salaire le plus élevé trouvé dans les offres correspondantes.
+
+  - MAX() retourne le plus grand salaire par secteur.
+
+Groupement et tri :
+
+- GROUP BY industry_name
+  ORDER BY salaire_max DESC
+  LIMIT 10
+
+  - GROUP BY : regroupe les lignes par secteur (industry_name).
+
+  - ORDER BY salaire_max DESC : trie du salaire le plus élevé au plus bas.
+
+  - LIMIT 10 : garde les 10 meilleurs secteurs.
+
+Pourquoi avoir utilisé une sous requête ? :
+
+- Parce que dans jobs_postings_clean, les salaires sont souvent stockés sous forme de texte → il faut d’abord les convertir (TRY_TO_DOUBLE) avant d’utiliser MAX().
+
+- Il est plus clair et sûr de faire la conversion dans la sous-requête, puis d’agréger proprement dans la requête principale.
