@@ -203,3 +203,55 @@ Pourquoi avoir utilisé une sous requête ? :
 - Il est plus clair et sûr de faire la conversion dans la sous-requête, puis d’agréger proprement dans la requête principale.
 
 <img width="1016" height="487" alt="Image" src="https://github.com/user-attachments/assets/8815697e-1967-43d3-a1de-dc179a8f3420" />
+
+##### code streamlit
+
+- Vérifie que le DataFrame df2 contient bien des données.
+
+- Si df2 est vide (ex. si la requête SQL n’a rien retourné), le bloc suivant est ignoré.
+
+- SALAIRE_MAX → converti en valeur numérique (float). S’il y a une erreur (ex: texte), on remplace par NaN.
+
+- INDUSTRY_NAME → converti en chaîne (str) pour être utilisable comme label dans le graphique.
+
+- Cela adapte les noms de colonnes retournées en majuscules par Snowflake.
+
+- alt.Chart(df2)
+
+  - Base du graphique (à partir des données df2)
+
+- .mark_circle(size=200)
+
+  - Affiche des cercles de taille fixe (200)
+
+- x='salaire_max:Q'
+
+  - Axe horizontal = montant du salaire max (:Q pour quantitatif)
+
+- y='industry_name:N'
+
+  - Axe vertical = nom du secteur (:N pour nominal)
+
+- sort='-x'
+
+  - Trie les secteurs du plus haut salaire vers le plus bas
+
+- color=industry_name
+
+  - Chaque secteur a une couleur différente
+
+- tooltip=[...]
+
+  - Quand on survole une bulle, on voit les infos du secteur et du salaire
+
+- .properties(width=700, height=400)
+
+  - Taille du graphique
+
+* st.altair_chart(chart2)
+
+  - Affiche le graphique interactif dans l'application Streamlit.
+
+* else: st.warning("Aucune donnée salariale à afficher.")
+
+  - Si df2 est vide (pas de résultats), Streamlit affiche un message d'avertissement jaune à l’utilisateur.
