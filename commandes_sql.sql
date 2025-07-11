@@ -120,7 +120,7 @@ FROM benefits;
 
 select * from benefits_clean;
 
--- Vue jobs_postings nettoyée
+Vue jobs_postings nettoyée
 CREATE OR REPLACE VIEW jobs_postings_clean AS
 SELECT
     job_id,
@@ -155,6 +155,84 @@ FROM jobs_postings;
 
 select * from jobs_postings_clean;
 
+CREATE OR REPLACE VIEW jobs_postings_clean_named AS
+SELECT
+    job_id,
+    CASE
+        WHEN company_name = '601919.0' THEN 'IBM'
+        WHEN company_name = '7361.0' THEN 'GE HealthCare'
+        WHEN company_name = '19850.0' THEN 'GE Power'
+        WHEN company_name = '1511.0' THEN 'Hewlett Packard Enterprise'
+        WHEN company_name = '2780388.0' THEN 'Oracle'
+        WHEN company_name = '241762.0' THEN 'Deloitte'
+        WHEN company_name = '502882.0' THEN 'Siemens'
+        WHEN company_name = '7003330.0' THEN 'PwC'
+        WHEN company_name = '5258388.0' THEN 'Ericsson'
+        WHEN company_name = '2138573.0' THEN 'JPMorgan Chase & Co.'
+        WHEN company_name = '814025.0' THEN 'DWS Group'
+        WHEN company_name = '11088832.0' THEN 'CTG'
+        WHEN company_name = '64549636.0' THEN 'OCLC'
+        WHEN company_name = '15142330.0' THEN 'GHX'
+        WHEN company_name = '1344.0' THEN 'Milliman'
+        WHEN company_name = '166572.0' THEN 'The Bolton Group'
+        WHEN company_name = '163787.0' THEN 'Harmer'
+        WHEN company_name = '86265278.0' THEN 'Clark Davis Associates'
+        WHEN company_name = '2673675.0' THEN 'Culver Careers (CulverCareers.com)'
+        WHEN company_name = '22141.0' THEN 'ITR Group'
+        WHEN company_name = '15564.0' THEN 'Comrise'
+        WHEN company_name = '82808548.0' THEN 'Profiles'
+        WHEN company_name = '1441.0' THEN 'Eurasia Group'
+        WHEN company_name = '54544813.0' THEN 'MATRIX Resources'
+        WHEN company_name = '13074.0' THEN 'Ohio Department of Development'
+        WHEN company_name = '40888889.0' THEN 'Huxley'
+        WHEN company_name = '28014.0' THEN 'LAIKA Studios'
+        WHEN company_name = '7587370.0' THEN 'ArenaNet LLC'
+        WHEN company_name = '8280.0' THEN 'Motion Recruitment'
+        WHEN company_name = '19637.0' THEN 'MSNBC'
+        WHEN company_name = '1318.0' THEN 'CEI'
+        WHEN company_name = '18040365.0' THEN 'Levi, Ray & Shoup, Inc. (LRS)'
+        WHEN company_name = '7587370.0' THEN 'PlayStation'
+        WHEN company_name = '11842128.0' THEN 'CDK Global'
+        WHEN company_name = '15356840.0' THEN 'General Dynamics Land Systems'
+        WHEN company_name = '814025.0' THEN 'Panasonic Avionics Corporation'
+        WHEN company_name = '18287.0' THEN 'Bell Flight'
+        ELSE company_name
+    END AS company_name,
+    -- Ajoute les autres colonnes si nécessaire
+FROM jobs_postings_clean;
+
+select * from jobs_postings_clean_named;
+
+title,
+description,
+TRY_TO_DOUBLE (max_salary) AS max_salary,
+pay_period,
+formatted_work_type,
+location,
+TRY_TO_NUMBER (applies) AS applies,
+TRY_TO_TIMESTAMP (original_listed_time) AS original_listed_time,
+LOWER(remote_allowed) IN ('true', 'yes', '1') AS remote_allowed,
+TRY_TO_NUMBER (views) AS views,
+job_posting_url,
+application_url,
+application_type,
+TRY_TO_TIMESTAMP (expiry) AS expiry,
+TRY_TO_TIMESTAMP (closed_time) AS closed_time,
+formatted_experience_level,
+skills_desc,
+TRY_TO_TIMESTAMP (listed_time) AS listed_time,
+posting_domain,
+LOWER(sponsored) IN ('true', 'yes', '1') AS sponsored,
+work_type,
+currency,
+compensation_type,
+company_email,
+company_website,
+job_tags
+FROM jobs_postings;
+
+select * from jobs_postings_clean_named;
+
 -- ==============================
 -- TABLES & VUES : JSON
 -- ==============================
@@ -181,6 +259,8 @@ FROM companies,
 LATERAL FLATTEN(input => company);
 
 select * from companies_clean;
+
+list @bucket_s3;
 
 -- Company Industries
 CREATE OR REPLACE TABLE company_industries_raw (data VARIANT);
@@ -303,7 +383,7 @@ list @bucket_s3;
 -- Nb d'offres par taille d'entreprise
 SELECT company_size, COUNT(DISTINCT jp.job_id) AS nb_offres
 FROM
-    jobs_postings_clean jp
+    jobs_postings_clean_named jp
     JOIN companies_clean c ON jp.company_name = c.name
 GROUP BY
     company_size
@@ -312,7 +392,7 @@ ORDER BY nb_offres DESC;
 -- Top 10 des secteurs avec le plus d’offres par intitulé
 SELECT i.industry_name, jp.title, COUNT(*) AS nb_postes
 FROM
-    jobs_postings_clean jp
+    jobs_postings_clean_named jp
     JOIN job_industries_clean ji ON jp.job_id = ji.job_id
     JOIN industries_csv i ON ji.industry_id = i.industry_id
 GROUP BY
@@ -330,7 +410,7 @@ FROM (
                 ORDER BY jp.max_salary DESC
             ) AS rn
         FROM
-            jobs_postings_clean jp
+            jobs_postings_clean_named jp
             JOIN job_industries_clean ji ON jp.job_id = ji.job_id
             JOIN industries_csv i ON ji.industry_id = i.industry_id
         WHERE
@@ -345,7 +425,47 @@ LIMIT 10;
 SELECT
     formatted_work_type AS type_emploi,
     COUNT(*) AS nb_offres
-FROM jobs_postings_clean
+FROM jobs_postings_clean_named
 GROUP BY
     formatted_work_type
 ORDER BY nb_offres DESC;
+
+SELECT DISTINCT
+    company_name
+FROM jobs_postings_clean_named
+LIMIT 100;
+
+-- afficher les sociétés et leurs tailles
+
+SELECT c.name AS company_name, c.company_size
+FROM companies_clean c
+WHERE
+    c.name is not null;
+
+SELECT c.name AS company_name, c.company_size
+FROM companies_clean c
+WHERE
+    c.name is not null;
+
+--Vérification nombre d'offres en fonction de la taille de l'entreprise.
+
+SELECT c.company_size, COUNT(DISTINCT jp.job_id) AS nb_offres
+FROM
+    jobs_postings_clean_named jp
+    JOIN companies_clean c ON jp.company_name = c.name
+WHERE
+    c.company_size IS NOT NULL
+    AND c.name IS NOT NULL
+GROUP BY
+    c.company_size
+ORDER BY
+    CASE
+        WHEN c.company_size = '1' THEN 1
+        WHEN c.company_size = '2' THEN 2
+        WHEN c.company_size = '3' THEN 3
+        WHEN c.company_size = '4' THEN 4
+        WHEN c.company_size = '5' THEN 5
+        WHEN c.company_size = '6' THEN 6
+        WHEN c.company_size = '7' THEN 7
+        ELSE 8
+    END;
