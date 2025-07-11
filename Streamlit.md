@@ -385,6 +385,7 @@ df3['industry_name'] = df3['INDUSTRY_NAME'].astype(str)
 <img width="987" height="370" alt="Image" src="https://github.com/user-attachments/assets/47ccce38-943c-42a4-ae92-12ba6faa0104" />
 
 ##### code streamlit
+<img width="1137" height="645" alt="Image" src="https://github.com/user-attachments/assets/782d6fa5-d2d1-4cec-bacb-075058aa3d61" />
 
 - La fonction run_query() exécute la requête query4 (celle que tu viens d’examiner).
 
@@ -441,6 +442,8 @@ le texte affiche (mmettre image)
     - Le donut en fond
 
     - Le texte total au centre
+
+<img width="1232" height="628" alt="Image" src="https://github.com/user-attachments/assets/d96d5096-1e7c-46c9-85d2-a923d2f6dc4f" />
 
 * else: st.warning("Aucune donnée disponible pour le type d’emploi.")
 
