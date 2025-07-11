@@ -33,7 +33,8 @@ option = st.selectbox(
         "Top 10 industries avec le plus de postes",
         "Top 10 industries avec les salaires les plus élevés",
         "Répartition des offres d’emploi par secteur d’activité",
-        "Répartition des offres d’emploi par type d’emploi"
+        "Répartition des offres d’emploi par type d’emploi",
+        "Répartition des offres d’emploi par taille d’entreprise."
     ]
 )
 
@@ -184,7 +185,6 @@ elif option == "Répartition des offres d’emploi par type d’emploi":
             tooltip=["type_emploi", "nb_offres"]
         ).properties(width=600, height=500)
 
-        # Texte au centre
         text = alt.Chart(pd.DataFrame({"x": [0], "y": [0], "text": [f"Total\n{total_offres}"]})).mark_text(
             align="center", baseline="middle", fontSize=20
         ).encode(
@@ -196,3 +196,55 @@ elif option == "Répartition des offres d’emploi par type d’emploi":
         st.altair_chart(chart4 + text)
     else:
         st.warning("Aucune donnée disponible pour le type d’emploi.")
+
+# ----------------------------
+# 📊 Nouveau : Répartition des offres d’emploi par taille d’entreprise
+# ----------------------------
+elif option == "Répartition des offres d’emploi par taille d’entreprise.":
+    st.subheader("🏢 Répartition des offres d’emploi par taille d’entreprise.")
+
+    query5 = """
+        SELECT
+  c.company_size,
+  COUNT(DISTINCT jp.job_id) AS nb_offres
+FROM jobs_postings_clean_named jp
+JOIN companies_clean c
+  ON jp.company_name = c.name
+WHERE c.company_size IS NOT NULL
+  AND c.name IS NOT NULL
+GROUP BY c.company_size
+ORDER BY
+  CASE 
+    WHEN c.company_size = '1' THEN 1
+    WHEN c.company_size = '2' THEN 2
+    WHEN c.company_size = '3' THEN 3
+    WHEN c.company_size = '4' THEN 4
+    WHEN c.company_size = '5' THEN 5
+    WHEN c.company_size = '6' THEN 6
+    WHEN c.company_size = '7' THEN 7
+    ELSE 8
+  END;
+    """
+
+    st.code(query5, language="sql")
+
+    df5 = run_query(query5)
+    st.dataframe(df5)
+
+    if not df5.empty:
+        df5['nb_offres'] = pd.to_numeric(df5['NB_OFFRES'], errors='coerce')
+        df5['company_size'] = df5['COMPANY_SIZE'].astype(str)
+
+        chart5 = alt.Chart(df5).mark_bar().encode(
+            x=alt.X("company_size:N", sort=[
+                '1-10', '11-50', '51-200', '201-500', '501-1000',
+                '1001-5000', '5001-10,000', '10,001+'
+            ], title="Taille d’entreprise"),
+            y=alt.Y("nb_offres:Q", title="Nombre d’offres"),
+            color=alt.Color("company_size:N", scale=alt.Scale(scheme="category10")),
+            tooltip=["company_size", "nb_offres"]
+        ).properties(width=700, height=400)
+
+        st.altair_chart(chart5)
+    else:
+        st.warning("Aucune donnée disponible sur la taille des entreprises.")
