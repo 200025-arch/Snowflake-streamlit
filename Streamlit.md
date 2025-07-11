@@ -51,3 +51,13 @@ Pourquoi réaliser ces imports ? :
 - Permet de choisir parmis une des visualisations
 
 <img width="1087" height="445" alt="Image" src="https://github.com/user-attachments/assets/bb71ad93-7fb4-4221-ab33-6ca491f99a4b" />
+
+## Les visualisations
+
+👉 Afficher le top 10 des titres de postes les plus publiés par industrie.
+
+##### Requête SQL :
+
+- i.industry_name : sélectionne le nom du secteur d’activité (par exemple : "Technologie", "Santé", etc.).
+
+- COUNT(\*) AS nb_postes : compte le nombre total d’offres associées à chaque secteur, et renomme la colonne résultante en nb_postes.
