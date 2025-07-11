@@ -32,7 +32,7 @@ CREATE OR REPLACE STAGE bucket_s3 URL = 's3://snowflake-lab-bucket/';
 
 <img width="757" height="62" alt="Image" src="https://github.com/user-attachments/assets/482a7394-8207-4734-b6d1-13745a211886" />
 
-## Format de fichier (csv & json)
+## Format de fichiers (csv & json)
 
 ### Format csv
 
@@ -49,3 +49,25 @@ Cette commande :
 -Crée un format de fichier nommé json_format, ou le remplace s’il existe déjà.
 
 -Indique que le format s’applique à des fichiers JSON.
+
+## Création des tables
+
+### Table créée à partir de fichiers csv
+
+Pour créer les tables, nous avons utilisé la commande suivante :
+
+CREATE OR REPLACE TABLE "nom de la table"(
+"colonne1" string,
+"Colonne2" integer,
+etc
+);
+
+L'instruction "Create or replace" crée une table ou la remplace si elle existe déjà. Les instructions à l'intérieur de la table permettent de créer les colonnes et de donner des types à ces colonnes. Pour les tables créées à partir des données des fichiers csv, il est possibile de créer toutes les colonnes au moment de la création de la table.
+
+### Table créée à partir de fichiers json
+
+L'instruction pour créer une table reste la même 'CREATE OR REPLACE TABLE "nom de la table"', la différence intervient au moment de la création des colonnes. En effet au moment de la création de la table, on peut créer une seule colonne de type "Variant".
+
+CREATE OR REPLACE TABLE "nom de la table"(
+"data" Variant,
+);
