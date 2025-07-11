@@ -89,3 +89,28 @@ COPY INTO "nom de notre table" FROM @le_stage/le_fichier_a_charger FILE_FORMAT =
 ### COPY INTO avec un fichier json
 
 <img width="992" height="46" alt="Image" src="https://github.com/user-attachments/assets/7237f17f-074b-4b79-8ce6-081df60a9350" />
+
+## Les vues
+
+### json
+
+Après avoir créer les tables, on a créé des vues pour pouvoir afficher les données JSON sous forme tabulaire (comme une vraie table relationnelle) mais aussi pour avoir une vue propre. Pour y arriver nous avons utiliser la commande suivante :
+
+CREATE OR REPLACE VIEW "nom de la vue" AS
+SELECT
+value:"nom de la colonne"::string as "le nom que l'on veut donner",
+value:"nom de la colonne"::string as "le nom que l'on veut donner"
+FROM "nom de la table",
+LATERAL FLATTEN (input => data);
+
+Create or replace view : Crée ou remplace la vue si elle existe déjà.
+
+AS : Permet de renomer la table, les colonne, la vue comme étant le résultat de l'instruction "SELECT"
+
+value : Représente chaque objet du fichier JSON
+
+::STRING force le type de la donnée à STRING.
+
+LATERAL FLATTEN permet d’extraire les éléments d’un tableau JSON.
+
+data : Si chaque "data" dans le JSON est un objet dans un tableau, FLATTEN va parcourir chaque élément de ce tableau.
