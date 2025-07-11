@@ -206,6 +206,8 @@ Pourquoi avoir utilisé une sous requête ? :
 
 ##### code streamlit
 
+<img width="888" height="330" alt="Image" src="https://github.com/user-attachments/assets/9843c685-4fa9-4bc8-94ef-ef509be51e88" />
+
 - Vérifie que le DataFrame df2 contient bien des données.
 
 - Si df2 est vide (ex. si la requête SQL n’a rien retourné), le bloc suivant est ignoré.
@@ -251,6 +253,8 @@ Pourquoi avoir utilisé une sous requête ? :
 * st.altair_chart(chart2)
 
   - Affiche le graphique interactif dans l'application Streamlit.
+
+<img width="1120" height="520" alt="Image" src="https://github.com/user-attachments/assets/4f0c8bef-4518-4cdf-9541-937112d26789" />
 
 * else: st.warning("Aucune donnée salariale à afficher.")
 
