@@ -107,3 +107,31 @@ Pourquoi réaliser ces imports ? :
 - run_query(query) → exécute la requête SQL via la session Snowflake et récupère les données dans un DataFrame Pandas (df).
 
 - st.dataframe(df) → affiche ces données dans un tableau interactif Streamlit (triable, scrollable).
+
+* if not df.empty:
+
+  - Vérifie que df n’est pas vide avant d’essayer de construire un graphique.
+
+* Les colonnes issues de Snowflake sont souvent en majuscules, on les renomme en minuscules pour compatibilité avec Altair.
+
+  - pd.to_numeric() convertit les chaînes "123" en nombres 123, et met NaN si la conversion échoue.
+
+  - astype(str) assure que industry_name est bien du texte, ce qui est requis pour l’axe Y du graphique.
+
+* alt.Chart(df) → base du graphique à partir du DataFrame.
+
+* .mark_bar() → crée un graphique en barres.
+
+* .encode(...) → définit les axes et les options :
+
+  - x='nb_postes:Q' → axe horizontal = nombre de postes (:Q = quantitatif)
+
+  - y='industry_name:N' → axe vertical = nom du secteur (:N = nominal)
+
+  - sort='-x' → trie les secteurs du plus grand au plus petit nombre de postes
+
+  - color → chaque barre a une couleur différente
+
+  - tooltip → affiche les valeurs au survol
+
+* .properties(...) → définit la taille du graphique.
