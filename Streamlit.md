@@ -46,4 +46,8 @@ Pourquoi réaliser ces imports ? :
 
 ## Sélecteur d’analyse
 
+<img width="781" height="227" alt="Image" src="https://github.com/user-attachments/assets/a498d8a5-4bc2-480f-b2a8-8f5dea938203" />
+
 - Permet de choisir parmis une des visualisations
+
+<img width="1087" height="445" alt="Image" src="https://github.com/user-attachments/assets/bb71ad93-7fb4-4221-ab33-6ca491f99a4b" />
