@@ -455,6 +455,7 @@ df3['industry_name'] = df3['INDUSTRY_NAME'].astype(str)
 👉 Afficher la répartition des offres d’emploi par type d’emploi (temps plein, stage, temps partiel).
 
 ##### Requête SQL :
+<img width="1002" height="508" alt="Image" src="https://github.com/user-attachments/assets/f14d4644-82db-4c15-904c-94d35fadfb67" />
 
 - c.company_size : la taille de l'entreprise (ex: "1-10", "11-50", etc.)
 
@@ -490,3 +491,5 @@ ORDER BY
 - END;
 
 * Permet de contrôler l’ordre d’affichage des tailles d’entreprise.
+
+<img width="1002" height="368" alt="Image" src="https://github.com/user-attachments/assets/6f0804be-a577-47e4-a960-29b5fd8c509a" />
