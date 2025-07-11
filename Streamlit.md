@@ -256,6 +256,6 @@ Pourquoi avoir utilisé une sous requête ? :
 
 <img width="1120" height="520" alt="Image" src="https://github.com/user-attachments/assets/4f0c8bef-4518-4cdf-9541-937112d26789" />
 
-* else: st.warning("Aucune donnée salariale à afficher.")
+- else: st.warning("Aucune donnée salariale à afficher.")
 
-  - Si df2 est vide (pas de résultats), Streamlit affiche un message d'avertissement jaune à l’utilisateur.
+  - Si df2 est vide (pas de résultats), Streamlit affiche un message d'avertissement jaune à l’utilisateur. 2
