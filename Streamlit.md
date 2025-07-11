@@ -154,6 +154,8 @@ Pourquoi réaliser ces imports ? :
 
 ##### Requête SQL :
 
+<img width="871" height="366" alt="Image" src="https://github.com/user-attachments/assets/414bfc27-27c6-445a-bfb2-e33cdaf22df3" />
+
 Sous-requête interne
 
 - 📄 jobs_postings_clean (jp) : table principale contenant les offres d’emploi.
@@ -199,3 +201,5 @@ Pourquoi avoir utilisé une sous requête ? :
 - Parce que dans jobs_postings_clean, les salaires sont souvent stockés sous forme de texte → il faut d’abord les convertir (TRY_TO_DOUBLE) avant d’utiliser MAX().
 
 - Il est plus clair et sûr de faire la conversion dans la sous-requête, puis d’agréger proprement dans la requête principale.
+
+<img width="1016" height="487" alt="Image" src="https://github.com/user-attachments/assets/8815697e-1967-43d3-a1de-dc179a8f3420" />
