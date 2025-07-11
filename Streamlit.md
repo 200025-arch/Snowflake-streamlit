@@ -363,6 +363,7 @@ df3['industry_name'] = df3['INDUSTRY_NAME'].astype(str)
 👉 Afficher la répartition des offres d’emploi par type d’emploi (temps plein, stage, temps partiel).
 
 ##### Requête SQL :
+
 <img width="772" height="238" alt="Image" src="https://github.com/user-attachments/assets/0c521a43-fd98-4319-8c5c-017c01d42d44" />
 
 - formatted_work_type : champ qui contient le type d’emploi formaté (ex : "Full-time", "Internship", "Contract"...).
@@ -384,3 +385,63 @@ df3['industry_name'] = df3['INDUSTRY_NAME'].astype(str)
 <img width="987" height="370" alt="Image" src="https://github.com/user-attachments/assets/47ccce38-943c-42a4-ae92-12ba6faa0104" />
 
 ##### code streamlit
+
+- La fonction run_query() exécute la requête query4 (celle que tu viens d’examiner).
+
+- Le résultat est un DataFrame Pandas (df4) contenant :
+
+  - TYPE_EMPLOI (ex : Full-time, Internship…)
+
+  - NB_OFFRES (le nombre d’offres par type)
+
+* Ce tableau est affiché directement dans Streamlit via st.dataframe(df4).
+
+* On vérifie que df4 contient des données avant d’essayer d’afficher un graphique.
+
+* NB_OFFRES → converti en nombre (float) pour pouvoir être utilisé dans Altair (:Q pour quantitatif).
+
+* TYPE_EMPLOI → renommé en type_emploi et converti en texte (str).
+
+* Nécessaire car Snowflake renvoie les colonnes en majuscules, et Altair ne gère pas bien les noms de colonnes en majuscules.
+
+* total_offres = int(df4['nb_offres'].sum()) :
+
+  - On calcule la somme de toutes les offres (nb_offres) pour afficher le total au centre du graphique.
+
+* .mark_arc(innerRadius=100)
+
+  - Crée un donut chart (graphique en anneau)
+
+* theta
+
+  - Contrôle la taille de chaque part, selon nb_offres
+
+* color
+
+  - Donne une couleur différente à chaque type d’emploi
+
+* tooltip
+
+  - Affiche infos au survol : type + nombre d’offres
+
+* properties(...)
+
+  - Définit la taille du graphique (600x500)
+
+le texte affiche (mmettre image)
+
+- Crée une chart Altair séparée avec du texte centré.
+
+* Le texte affiche :
+
+* st.altair_chart(chart4 + text) :
+
+  - Additionne les deux graphiques Altair (chart4 + text) pour superposer :
+
+    - Le donut en fond
+
+    - Le texte total au centre
+
+* else: st.warning("Aucune donnée disponible pour le type d’emploi.")
+
+  - Affiche un message d’avertissement si le DataFrame est vide.
