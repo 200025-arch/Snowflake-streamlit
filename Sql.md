@@ -75,3 +75,13 @@ L'instruction pour créer une table reste la même 'CREATE OR REPLACE TABLE "nom
 CREATE OR REPLACE TABLE "nom de la table"(
 "data" Variant,
 );
+
+## La copie des données
+
+Après la création de chaque table, on devait copier les données. Pour le faire, on a utilisé une commande qui charge les données depuis le bucket s3 vers nos différentes tables en utilisant des règles de format (csv & json). La commande varie légèrement en fonction du type du ficher (json ou csv) ;
+
+COPY INTO "nom de notre table" FROM @le_stage/le_fichier_a_charger FILE_FORMAT = (FORMAT_NAME = json_format/csv);
+
+### COPY INTO avec un fichier csv
+
+### COPY INTO avec un fichier json
