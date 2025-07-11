@@ -92,6 +92,8 @@ COPY INTO "nom de notre table" FROM @le_stage/le_fichier_a_charger FILE_FORMAT =
 
 ## Les vues
 
+On a créé des vues pour transformer les données.
+
 ### json
 
 Après avoir créer les tables, on a créé des vues pour pouvoir afficher les données JSON sous forme tabulaire (comme une vraie table relationnelle) mais aussi pour avoir une vue propre. Pour y arriver nous avons utiliser la commande suivante :
