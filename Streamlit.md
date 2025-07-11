@@ -477,15 +477,16 @@ df3['industry_name'] = df3['INDUSTRY_NAME'].astype(str)
 Tri personnalisé :
 
 ORDER BY
-CASE
-WHEN c.company_size = '1' THEN 1
-WHEN c.company_size = '2' THEN 2
-WHEN c.company_size = '3' THEN 3
-WHEN c.company_size = '4' THEN 4
-WHEN c.company_size = '5' THEN 5
-WHEN c.company_size = '6' THEN 6
-WHEN c.company_size = '7' THEN 7
-ELSE 8
-END;
 
-- Permet de contrôler l’ordre d’affichage des tailles d’entreprise.
+- CASE
+  - WHEN c.company_size = '1' THEN 1
+  - WHEN c.company_size = '2' THEN 2
+  - WHEN c.company_size = '3' THEN 3
+  - WHEN c.company_size = '4' THEN 4
+  - WHEN c.company_size = '5' THEN 5
+  - WHEN c.company_size = '6' THEN 6
+  - WHEN c.company_size = '7' THEN 7
+  - ELSE 8
+- END;
+
+* Permet de contrôler l’ordre d’affichage des tailles d’entreprise.
