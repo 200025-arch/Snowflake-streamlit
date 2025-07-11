@@ -7,3 +7,5 @@ Le premier problème que nous avons rencontré c'était au niveau de l'affichage
 - data:company_name
 
 Mais on avait pas les valeurs. La solution que l'on trouvé pour résoudre ce problème est "LATERAL FLATTEN", c'est pour cela que nous avons la syntaxe suivante :
+
+<img width="1022" height="437" alt="Image" src="https://github.com/user-attachments/assets/4fb5c76f-609f-4fcf-81f5-63327b0a4b3d" />
