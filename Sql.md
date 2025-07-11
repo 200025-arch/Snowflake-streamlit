@@ -6,29 +6,29 @@ Dans cette partie, nous mettrons en avons ce que nous avons fait et pourquoi nou
 
 On a commencé par créer une base de données que l'on a nommé "LinkedIn", pour créer cette base nous avons utilisé la commande sql suivante :
 
-CREATE OR REPLACE DATABASE linkedin;
+- CREATE OR REPLACE DATABASE linkedin;
 
 <img width="718" height="180" alt="Image" src="https://github.com/user-attachments/assets/8911ee2b-ec8d-44da-97e2-fc5468bebd83" />
 
 La commande fait ceci ;
 
--crée une base de données appelée linkedin
+- crée une base de données appelée linkedin
 
--remplace la base si elle existe déjà (⚠️ cela supprime tout son contenu existant !).
+- remplace la base si elle existe déjà (⚠️ cela supprime tout son contenu existant !).
 
 USE DATABASE linkedin;
 
 Cette commande :
 
--indique que l'on veux travailler dans la base linkedin pour toutes les commandes SQL suivantes (création de tables, requêtes, etc.).
+- indique que l'on veux travailler dans la base linkedin pour toutes les commandes SQL suivantes (création de tables, requêtes, etc.).
 
--Elle change le contexte actif vers cette base.
+- Elle change le contexte actif vers cette base.
 
 ## Création du stage
 
 Un "stage" dans Snowflake est comme une zone temporaire ou un point de passage où on peut stocker ou lire des fichiers (CSV, JSON, etc.) avant de les charger dans des tables. Pour créer ce stage, on a utilisé la commande suivante ;
 
-CREATE OR REPLACE STAGE bucket_s3 URL = 's3://snowflake-lab-bucket/';
+- CREATE OR REPLACE STAGE bucket_s3 URL = 's3://snowflake-lab-bucket/';
 
 <img width="757" height="62" alt="Image" src="https://github.com/user-attachments/assets/482a7394-8207-4734-b6d1-13745a211886" />
 
@@ -46,9 +46,9 @@ Cette commande SQL permet de définir un format de fichier personnalisé pour li
 
 Cette commande :
 
--Crée un format de fichier nommé json_format, ou le remplace s’il existe déjà.
+- Crée un format de fichier nommé json_format, ou le remplace s’il existe déjà.
 
--Indique que le format s’applique à des fichiers JSON.
+- Indique que le format s’applique à des fichiers JSON.
 
 ## Création des tables
 
@@ -58,11 +58,11 @@ Cette commande :
 
 Pour créer les tables, nous avons utilisé la commande suivante :
 
-CREATE OR REPLACE TABLE "nom de la table"(
-"colonne1" string,
-"Colonne2" integer,
-etc
-);
+- CREATE OR REPLACE TABLE "nom de la table"(
+  "colonne1" string,
+  "Colonne2" integer,
+  etc
+  );
 
 L'instruction "Create or replace" crée une table ou la remplace si elle existe déjà. Les instructions à l'intérieur de la table permettent de créer les colonnes et de donner des types à ces colonnes. Pour les tables créées à partir des données des fichiers csv, il est possibile de créer toutes les colonnes au moment de la création de la table.
 
@@ -72,15 +72,15 @@ L'instruction "Create or replace" crée une table ou la remplace si elle existe 
 
 L'instruction pour créer une table reste la même 'CREATE OR REPLACE TABLE "nom de la table"', la différence intervient au moment de la création des colonnes. En effet au moment de la création de la table, on peut créer une seule colonne de type "Variant".
 
-CREATE OR REPLACE TABLE "nom de la table"(
-"data" Variant,
-);
+- CREATE OR REPLACE TABLE "nom de la table"(
+  "data" Variant,
+  );
 
 ## La copie des données
 
 Après la création de chaque table, on devait copier les données. Pour le faire, on a utilisé une commande qui charge les données depuis le bucket s3 vers nos différentes tables en utilisant des règles de format (csv & json). La commande varie légèrement en fonction du type du ficher (json ou csv) ;
 
-COPY INTO "nom de notre table" FROM @le_stage/le_fichier_a_charger FILE_FORMAT = (FORMAT_NAME = json_format/csv);
+- COPY INTO "nom de notre table" FROM @le_stage/le_fichier_a_charger FILE_FORMAT = (FORMAT_NAME = json_format/csv);
 
 ### COPY INTO avec un fichier csv
 
@@ -107,22 +107,22 @@ LATERAL FLATTEN (input => data);
 
 <img width="522" height="327" alt="Image" src="https://github.com/user-attachments/assets/d59ef979-113a-4a6a-b532-1d4cd02492c3" />
 
-Create or replace view : Crée ou remplace la vue si elle existe déjà.
+- Create or replace view : Crée ou remplace la vue si elle existe déjà.
 
-AS : Permet de renomer la table, les colonne, la vue comme étant le résultat de l'instruction "SELECT"
+- AS : Permet de renomer la table, les colonne, la vue comme étant le résultat de l'instruction "SELECT"
 
-value : Représente chaque objet du fichier JSON
+- value : Représente chaque objet du fichier JSON
 
-::STRING force le type de la donnée à STRING.
+- ::STRING force le type de la donnée à STRING.
 
-LATERAL FLATTEN permet d’extraire les éléments d’un tableau JSON.
+- LATERAL FLATTEN permet d’extraire les éléments d’un tableau JSON.
 
-data : Si chaque "data" dans le JSON est un objet dans un tableau, FLATTEN va parcourir chaque élément de ce tableau.
+- data : Si chaque "data" dans le JSON est un objet dans un tableau, FLATTEN va parcourir chaque élément de ce tableau.
 
 ## Pour vérifier
 
 Pour effectuer des vérifications au fur et à mesure que l'on évoluait, on affichait les tables avec cette instruction ;
 
-select \* from "nom de la table";
+- select \* from "nom de la table";
 
-- "\*" : Permet de sélectionner toutes les colonnes de la table que l'on veut afficher.
+"\*" : Permet de sélectionner toutes les colonnes de la table que l'on veut afficher.
