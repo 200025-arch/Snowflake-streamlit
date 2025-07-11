@@ -94,6 +94,8 @@ Pourquoi réaliser ces imports ? :
 
 ##### code streamlit
 
+<img width="897" height="473" alt="Image" src="https://github.com/user-attachments/assets/cb2aeb7b-242b-4b2d-988d-808a7860ce23" />
+
 - st.code(query, language="sql"):
 
   - Affiche la requête SQL (query) dans une zone de code avec coloration syntaxique.
