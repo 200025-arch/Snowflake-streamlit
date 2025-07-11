@@ -54,6 +54,8 @@ Pourquoi réaliser ces imports ? :
 
 ## Les visualisations
 
+#### Première visualisation
+
 👉 Afficher le top 10 des titres de postes les plus publiés par industrie.
 
 ##### Requête SQL :
@@ -142,6 +144,6 @@ Pourquoi réaliser ces imports ? :
 
 <img width="1286" height="518" alt="Image" src="https://github.com/user-attachments/assets/42668383-8e87-4b40-a58d-89dd74599f86" />
 
-* else: st.warning("Aucune donnée à afficher.")
+- else: st.warning("Aucune donnée à afficher.")
 
   - Si df est vide, Streamlit affiche un message jaune pour prévenir l’utilisateur.
