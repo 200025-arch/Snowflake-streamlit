@@ -84,4 +84,8 @@ COPY INTO "nom de notre table" FROM @le_stage/le_fichier_a_charger FILE_FORMAT =
 
 ### COPY INTO avec un fichier csv
 
+<img width="1030" height="27" alt="Image" src="https://github.com/user-attachments/assets/3ef38521-5683-4ff8-b6da-446f17f966cf" />
+
 ### COPY INTO avec un fichier json
+
+<img width="992" height="46" alt="Image" src="https://github.com/user-attachments/assets/7237f17f-074b-4b79-8ce6-081df60a9350" />
