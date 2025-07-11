@@ -103,6 +103,8 @@ value:"nom de la colonne"::string as "le nom que l'on veut donner"
 FROM "nom de la table",
 LATERAL FLATTEN (input => data);
 
+<img width="522" height="327" alt="Image" src="https://github.com/user-attachments/assets/d59ef979-113a-4a6a-b532-1d4cd02492c3" />
+
 Create or replace view : Crée ou remplace la vue si elle existe déjà.
 
 AS : Permet de renomer la table, les colonne, la vue comme étant le résultat de l'instruction "SELECT"
