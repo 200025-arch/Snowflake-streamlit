@@ -43,3 +43,7 @@ Pourquoi réaliser ces imports ? :
 - Renvoie le résultat sous forme de DataFrame Pandas.
 
 - Affiche une erreur si la requête échoue.
+
+## Sélecteur d’analyse
+
+- Permet de choisir parmis une des visualisations
