@@ -64,8 +64,26 @@ Pourquoi réaliser ces imports ? :
 
 * 3 tables sont jointes :
 
-  - jobs_postings_clean → contient les offres d’emploi (jp)
+  - jobs_postings_clean contient les offres d’emploi (jp)
 
-  - job_industries_clean → table de liaison entre les offres et les secteurs (ji)
+  - job_industries_clean est une table de liaison entre les offres et les secteurs (ji)
 
-  - industries_csv → contient la liste des secteurs (i)
+  - industries_csv contient la liste des secteurs (i)
+
+* Jointures logiques :
+
+  - jp.job_id = ji.job_id lie chaque offre à son/leurs secteur(s)
+
+  - ji.industry_id = i.industry_id récupère le nom du secteur depuis l’identifiant
+
+* WHERE i.industry_name IS NOT NULL :
+
+  - Filtre les secteurs vides ou inconnus pour éviter les résultats incomplets.
+
+* GROUP BY i.industry_name:
+
+  - Regroupe toutes les offres par secteur d’activité afin de pouvoir compter combien de postes sont associés à chacun.
+
+* ORDER BY nb_postes DESC:
+
+  - Trie les secteurs du plus grand nombre de postes au plus petit.
