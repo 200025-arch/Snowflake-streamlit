@@ -299,3 +299,5 @@ On reconstitue la relation entre chaque offre et son secteur d’activité, pour
 - ORDER BY nb_offres DESC
 
   - Trie les secteurs du plus grand nombre d’offres au plus petit, afin de visualiser les plus populaires en premier.
+
+<img width="1002" height="511" alt="Image" src="https://github.com/user-attachments/assets/304b1310-553c-4c90-99bc-d18680184662" />
