@@ -434,6 +434,7 @@ le texte affiche (mmettre image)
 - Crée une chart Altair séparée avec du texte centré.
 
 * Le texte affiche :
+<img width="305" height="103" alt="Image" src="https://github.com/user-attachments/assets/ead1f79b-f355-4157-bc6e-413d396991f9" />
 
 * st.altair_chart(chart4 + text) :
 
