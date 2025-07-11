@@ -25,3 +25,17 @@ Pourquoi réaliser ces imports ? :
 - Configure le titre de la page et la largeur de l’interface.
 
 - Affiche le titre principal du tableau de bord.
+
+## Connexion à Snowflake
+
+- Récupère la session Snowflake actuelle (déjà authentifiée).
+
+## Fonction utilitaire pour exécuter une requête
+
+- Prend une requête SQL en paramètre.
+
+- L’exécute via Snowflake.
+
+- Renvoie le résultat sous forme de DataFrame Pandas.
+
+- Affiche une erreur si la requête échoue.
