@@ -304,6 +304,8 @@ On reconstitue la relation entre chaque offre et son secteur d’activité, pour
 
 ##### code streamlit
 
+<img width="842" height="392" alt="Image" src="https://github.com/user-attachments/assets/67be80f7-d6a0-46af-9409-2caae616ef87" />
+
 - df3 = run_query(query3)
 
   - Exécute la requête SQL (query3) avec run_query() → récupère les résultats dans un DataFrame Pandas df3.
@@ -349,6 +351,8 @@ df3['industry_name'] = df3['INDUSTRY_NAME'].astype(str)
 * st.altair_chart(chart3)
 
   - Affiche le graphique Altair dans l’application Streamlit.
+
+<img width="1127" height="622" alt="Image" src="https://github.com/user-attachments/assets/c71ea756-4a20-4ed6-8d8b-8baca1660ba3" />
 
 * else: st.warning("Aucune donnée disponible pour la répartition.")
 
